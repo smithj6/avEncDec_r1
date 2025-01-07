@@ -30,28 +30,30 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlNav = new System.Windows.Forms.Panel();
+            this.btnLogsCheck = new System.Windows.Forms.Button();
+            this.btnTransfer = new System.Windows.Forms.Button();
+            this.btnBatchRun = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.btnAnalytics = new System.Windows.Forms.Button();
             this.btnLogs = new System.Windows.Forms.Button();
             this.btnManage = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.panel1.Controls.Add(this.pnlNav);
+            this.panel1.Controls.Add(this.btnLogsCheck);
+            this.panel1.Controls.Add(this.btnTransfer);
+            this.panel1.Controls.Add(this.btnBatchRun);
             this.panel1.Controls.Add(this.btnSettings);
-            this.panel1.Controls.Add(this.btnAnalytics);
             this.panel1.Controls.Add(this.btnLogs);
             this.panel1.Controls.Add(this.btnManage);
             this.panel1.Controls.Add(this.btnDashboard);
@@ -65,14 +67,66 @@
             // pnlNav
             // 
             this.pnlNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.pnlNav.Location = new System.Drawing.Point(0, 193);
+            this.pnlNav.Location = new System.Drawing.Point(3, 352);
             this.pnlNav.Name = "pnlNav";
-            this.pnlNav.Size = new System.Drawing.Size(3, 100);
+            this.pnlNav.Size = new System.Drawing.Size(49, 100);
             this.pnlNav.TabIndex = 2;
+            // 
+            // btnLogsCheck
+            // 
+            this.btnLogsCheck.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnLogsCheck.FlatAppearance.BorderSize = 0;
+            this.btnLogsCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogsCheck.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogsCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
+            this.btnLogsCheck.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogsCheck.Location = new System.Drawing.Point(0, 324);
+            this.btnLogsCheck.Name = "btnLogsCheck";
+            this.btnLogsCheck.Size = new System.Drawing.Size(186, 42);
+            this.btnLogsCheck.TabIndex = 9;
+            this.btnLogsCheck.Text = "Log Checks";
+            this.btnLogsCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnLogsCheck.UseVisualStyleBackColor = true;
+            this.btnLogsCheck.Click += new System.EventHandler(this.btnLogsCheck_Click);
+            // 
+            // btnTransfer
+            // 
+            this.btnTransfer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTransfer.FlatAppearance.BorderSize = 0;
+            this.btnTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransfer.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransfer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
+            this.btnTransfer.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTransfer.Location = new System.Drawing.Point(0, 282);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(186, 42);
+            this.btnTransfer.TabIndex = 8;
+            this.btnTransfer.Text = "Transfer";
+            this.btnTransfer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnTransfer.UseVisualStyleBackColor = true;
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
+            // 
+            // btnBatchRun
+            // 
+            this.btnBatchRun.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBatchRun.FlatAppearance.BorderSize = 0;
+            this.btnBatchRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBatchRun.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchRun.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
+            this.btnBatchRun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBatchRun.Location = new System.Drawing.Point(0, 240);
+            this.btnBatchRun.Name = "btnBatchRun";
+            this.btnBatchRun.Size = new System.Drawing.Size(186, 42);
+            this.btnBatchRun.TabIndex = 7;
+            this.btnBatchRun.Text = "Batch Run";
+            this.btnBatchRun.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnBatchRun.UseVisualStyleBackColor = true;
+            this.btnBatchRun.Click += new System.EventHandler(this.btnBatchRun_Click);
             // 
             // btnSettings
             // 
             this.btnSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSettings.Enabled = false;
             this.btnSettings.FlatAppearance.BorderSize = 0;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,23 +140,6 @@
             this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // btnAnalytics
-            // 
-            this.btnAnalytics.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAnalytics.FlatAppearance.BorderSize = 0;
-            this.btnAnalytics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnalytics.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnalytics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
-            this.btnAnalytics.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAnalytics.Location = new System.Drawing.Point(0, 240);
-            this.btnAnalytics.Name = "btnAnalytics";
-            this.btnAnalytics.Size = new System.Drawing.Size(186, 42);
-            this.btnAnalytics.TabIndex = 5;
-            this.btnAnalytics.Text = "Analytics";
-            this.btnAnalytics.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnAnalytics.UseVisualStyleBackColor = true;
-            this.btnAnalytics.Click += new System.EventHandler(this.btnAnalytics_Click);
             // 
             // btnLogs
             // 
@@ -186,20 +223,8 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label2.Location = new System.Drawing.Point(20, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 32);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Dashboard";
-            // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(186, 0);
             this.panel3.Name = "panel3";
@@ -217,14 +242,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "avEncDec";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -237,12 +260,13 @@
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Button btnAnalytics;
         private System.Windows.Forms.Button btnLogs;
         private System.Windows.Forms.Button btnManage;
         private System.Windows.Forms.Panel pnlNav;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnTransfer;
+        private System.Windows.Forms.Button btnBatchRun;
+        private System.Windows.Forms.Button btnLogsCheck;
     }
 }
 
