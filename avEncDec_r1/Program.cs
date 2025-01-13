@@ -163,7 +163,7 @@ namespace avEncDec_r1
 
                             maintainDB(fileHooker.MainFile, fileHooker.LinkedFile);
 
-                            await ShowNotification($"File saved to: {fileHooker.MainFile}");
+                           // await ShowNotification($"File saved to: {fileHooker.MainFile}");
 
                             try
                             {
@@ -238,7 +238,7 @@ namespace avEncDec_r1
                     string uniqueFileName = Guid.NewGuid().ToString().Split('-')[0] + "_" + Path.GetFileName(originalFilePath.FullName);
                     tempFilePath = Path.Combine(tempFolder, uniqueFileName);
                     File.Copy(originalFilePath.FullName, tempFilePath);
-                    await ShowNotification("File copied to temp: " + tempFilePath);
+                   // await ShowNotification("File copied to temp: " + tempFilePath);
                     //take the file and encrypt it
                     await new UserFiles().addFile(new UserFile
                     {
@@ -270,7 +270,7 @@ namespace avEncDec_r1
                     string uniqueFileName = Guid.NewGuid().ToString().Split('-')[0] + "_" + Path.GetFileName(originalFilePath.FullName);
                     tempFilePath = Path.Combine(tempFolder, uniqueFileName);
                     File.WriteAllText(tempFilePath,sanitize);
-                    await ShowNotification("File copied and decrypted to temp: " + tempFilePath);
+                   // await ShowNotification("File copied and decrypted to temp: " + tempFilePath);
                 }
 
             } 

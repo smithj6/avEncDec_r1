@@ -18,22 +18,29 @@ namespace avEncDec_w1
 {
 
 
-    public partial class Form1 : Form
+    public partial class avEncDec : Form
     {
-       NavigationControl navigationControl;
-        public Form1()
+        NavigationControl navigationControl;
+        public avEncDec()
         {
             InitializeComponent();
             ChangeNavClick((Button)btnDashboard);
-            
-            label1.Text = Environment.UserName;
+
+            LoadData();
             InitializeNavigationControl();
+        }
+        public async Task LoadData()
+        {
+            User user = new User();
+            GlobalVars._User = await user.checkUser();
+            label1.Text = GlobalVars._User.UserName;
         }
         private void InitializeNavigationControl()
         {
             List<UserControl> userControls = new List<UserControl>()
             {
-                new DashBoard()
+                new DashBoard(),
+                new Manage()
             };
             navigationControl = new NavigationControl(userControls, panel3);
             navigationControl.Display(0);
@@ -58,14 +65,12 @@ namespace avEncDec_w1
             sender.BackColor = Color.FromArgb(46, 51, 73);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void btnManage_Click(object sender, EventArgs e)
         {
             ChangeNavClick((Button)sender);
+            navigationControl.Display(1);
         }
 
         private void btnLogs_Click(object sender, EventArgs e)
@@ -82,10 +87,6 @@ namespace avEncDec_w1
         {
             ChangeNavClick((Button)sender);
         }
-
-     
-
-      
         private void btnBatchRun_Click(object sender, EventArgs e)
         {
             ChangeNavClick((Button)sender);
