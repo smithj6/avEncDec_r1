@@ -30,12 +30,10 @@
         {
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.pnlButtons = new System.Windows.Forms.Panel();
-            this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pnlHeader.SuspendLayout();
-            this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -58,43 +56,26 @@
             this.lblHeader.TabIndex = 2;
             this.lblHeader.Text = "Manage User Roles";
             // 
-            // pnlButtons
-            // 
-            this.pnlButtons.Controls.Add(this.btnAdd);
-            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlButtons.Location = new System.Drawing.Point(0, 100);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(951, 43);
-            this.pnlButtons.TabIndex = 3;
-            // 
-            // ofd
-            // 
-            this.ofd.FileName = "openFileDialog1";
-            // 
             // pnlContent
             // 
-            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 143);
+            this.pnlContent.Location = new System.Drawing.Point(0, 106);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(951, 434);
+            this.pnlContent.Size = new System.Drawing.Size(217, 471);
             this.pnlContent.TabIndex = 4;
             // 
-            // btnAdd
+            // panel1
             // 
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.Location = new System.Drawing.Point(0, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(951, 42);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Add A Path";
-            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.panel1.Location = new System.Drawing.Point(223, 106);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(728, 210);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(223, 322);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(728, 255);
+            this.panel2.TabIndex = 6;
             // 
             // UserRoleForm
             // 
@@ -102,15 +83,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(951, 577);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlContent);
-            this.Controls.Add(this.pnlButtons);
             this.Controls.Add(this.pnlHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UserRoleForm";
             this.Text = "UserRoleForm";
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
-            this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -119,9 +100,8 @@
 
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblHeader;
-        private System.Windows.Forms.Panel pnlButtons;
-        private System.Windows.Forms.OpenFileDialog ofd;
         private System.Windows.Forms.Panel pnlContent;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

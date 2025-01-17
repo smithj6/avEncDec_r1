@@ -69,6 +69,12 @@
     <Compile Include="UserControls\DashBoard.Designer.cs">
       <DependentUpon>DashBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\LogCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LogCheck.Designer.cs">
+      <DependentUpon>LogCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Manage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -81,11 +87,17 @@
     <Compile Include="UserControls\ManageUC\ManageUser.Designer.cs">
       <DependentUpon>ManageUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ManageUC\UserRoleForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="UserControls\UserRoles.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ManageUC\UserRoleForm.Designer.cs">
-      <DependentUpon>UserRoleForm.cs</DependentUpon>
+    <Compile Include="UserControls\UserRoles.Designer.cs">
+      <DependentUpon>UserRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserRolesUC\SelectableUsers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserRolesUC\SelectableUsers.Designer.cs">
+      <DependentUpon>SelectableUsers.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="avEncDec.resx">
       <DependentUpon>avEncDec.cs</DependentUpon>
@@ -106,14 +118,20 @@
     <EmbeddedResource Include="UserControls\DashBoard.resx">
       <DependentUpon>DashBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LogCheck.resx">
+      <DependentUpon>LogCheck.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Manage.resx">
       <DependentUpon>Manage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ManageUC\ManageUser.resx">
       <DependentUpon>ManageUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ManageUC\UserRoleForm.resx">
-      <DependentUpon>UserRoleForm.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UserRoles.resx">
+      <DependentUpon>UserRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserRolesUC\SelectableUsers.resx">
+      <DependentUpon>SelectableUsers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -40,7 +40,9 @@ namespace avEncDec_w1
             List<UserControl> userControls = new List<UserControl>()
             {
                 new DashBoard(),
-                new Manage()
+                new Manage(),
+                new UserRoles(),
+                new LogCheck(),
             };
             navigationControl = new NavigationControl(userControls, panel3);
             navigationControl.Display(0);
@@ -76,6 +78,7 @@ namespace avEncDec_w1
         private void btnLogs_Click(object sender, EventArgs e)
         {
             ChangeNavClick((Button)sender);
+            navigationControl.Display(2);
         }
 
         private void btnAnalytics_Click(object sender, EventArgs e)
@@ -100,6 +103,7 @@ namespace avEncDec_w1
         private void btnLogsCheck_Click(object sender, EventArgs e)
         {
             ChangeNavClick((Button)sender);
+            navigationControl.Display(3);
         }
     }
 }

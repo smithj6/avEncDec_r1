@@ -28,7 +28,7 @@ namespace avEncDec_w1.UserControls.ManageUC
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+           
         }
     }
 }

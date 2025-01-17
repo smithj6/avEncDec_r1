@@ -84,7 +84,7 @@ namespace avEncDec_r1
             var fileHookers = new List<Model.FileHooker>();
             if (_localdb.Length > 0)
             {
-                 fileHookers = JsonConvert.DeserializeObject<List<Model.FileHooker>>(Decrypt(File.ReadAllText(@"C:/sas_temp/locdb.lol"), user.PKey));
+                 fileHookers = JsonConvert.DeserializeObject<List<Model.FileHooker>>(EncDec.Decrypt(File.ReadAllText(@"C:/sas_temp/locdb.lol"), user.PKey));
             }
             fileHookers.Add(fileHooker);
             ////link up .log file.
@@ -94,7 +94,7 @@ namespace avEncDec_r1
             fileHookers = fileHookers.GroupBy(x => x.MainFile).Select(g => g.OrderByDescending(o => o.DTOFile).First()).ToList();
             System.IO.File.WriteAllText(@"C:/sas_temp/locdb.lol", string.Empty);
 
-            File.WriteAllText(@"C:/sas_temp/locdb.lol", Encrypt( JsonConvert.SerializeObject(fileHookers, Formatting.Indented),user.PKey));
+            File.WriteAllText(@"C:/sas_temp/locdb.lol", EncDec.Encrypt( JsonConvert.SerializeObject(fileHookers, Formatting.Indented),user.PKey));
 
         }
         static async Task MonitorFileAsync()
@@ -139,7 +139,7 @@ namespace avEncDec_r1
         {
             try
             {
-                var fileHookers = JsonConvert.DeserializeObject<List<Model.FileHooker>>(Decrypt(File.ReadAllText(@"C:/sas_temp/locdb.lol"), user.PKey));
+                var fileHookers = JsonConvert.DeserializeObject<List<Model.FileHooker>>(EncDec.Decrypt(File.ReadAllText(@"C:/sas_temp/locdb.lol"), user.PKey));
                 foreach(var fileHooker in fileHookers)
                 {
                     if(File.Exists(fileHooker.LinkedFile) && File.Exists(fileHooker.MainFile))
@@ -159,7 +159,7 @@ namespace avEncDec_r1
                                 UserID = user.UserID
                             });
 
-                            File.WriteAllText(MainFile.FullName, Encrypt(fileText, user.PKey));
+                            File.WriteAllText(MainFile.FullName, EncDec.Encrypt(fileText, user.PKey));
 
                             maintainDB(fileHooker.MainFile, fileHooker.LinkedFile);
 
@@ -172,7 +172,7 @@ namespace avEncDec_r1
                                 {
                                     FileInfo logfile = new FileInfo(MainFile.Directory + @"\logs\" + MainFile.Name.Replace(".sas", ".log"));
                                     fileText = File.ReadAllText(logfile.FullName);
-                                    File.WriteAllText(logfile.FullName, Encrypt(fileText, user.PKey));
+                                    File.WriteAllText(logfile.FullName, EncDec.Encrypt(fileText, user.PKey));
                                 }
 
                             }
@@ -248,7 +248,7 @@ namespace avEncDec_r1
                         FileLocation = originalFilePath.FullName,
                         UserID = user.UserID
                     });
-                    File.WriteAllText(originalFilePath.FullName, Encrypt(fileText, user.PKey));
+                    File.WriteAllText(originalFilePath.FullName, EncDec.Encrypt(fileText, user.PKey));
 
                     await new Log().addLog(
                                           new Logs
@@ -266,7 +266,7 @@ namespace avEncDec_r1
                 {
                     //decrypt file and copy it to the folder
                     UserFile userFile = await new UserFiles().getUserFile(originalFilePath.FullName);
-                    string sanitize = Decrypt(File.ReadAllText(originalFilePath.FullName), user.PKey);
+                    string sanitize = EncDec.Decrypt(File.ReadAllText(originalFilePath.FullName), user.PKey);
                     string uniqueFileName = Guid.NewGuid().ToString().Split('-')[0] + "_" + Path.GetFileName(originalFilePath.FullName);
                     tempFilePath = Path.Combine(tempFolder, uniqueFileName);
                     File.WriteAllText(tempFilePath,sanitize);
@@ -287,91 +287,6 @@ namespace avEncDec_r1
                    .AddText(message)
                    .Show(); // Not seeing the Show() method? Make sure you have version 7.0, and if you're using .NET 6 (or later), then your TFM must be net6.0-windows10.0.17763.0 or greater
         }
-        // This constant is used to determine the keysize of the encryption algorithm in bits.
-        // We divide this by 8 within the code below to get the equivalent number of bytes.
-        private const int Keysize = 256;
-        // This constant determines the number of iterations for the password bytes generation function.
-        private const int DerivationIterations = 1000;
-        public static string Decrypt(string cipherText, string passPhrase)
-        {
-            // Get the complete stream of bytes that represent:
-            // [32 bytes of Salt] + [32 bytes of IV] + [n bytes of CipherText]
-            var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(cipherText);
-            // Get the saltbytes by extracting the first 32 bytes from the supplied cipherText bytes.
-            var saltStringBytes = cipherTextBytesWithSaltAndIv.Take(Keysize / 8).ToArray();
-            // Get the IV bytes by extracting the next 32 bytes from the supplied cipherText bytes.
-            var ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(Keysize / 8).Take(Keysize / 8).ToArray();
-            // Get the actual cipher text bytes by removing the first 64 bytes from the cipherText string.
-            var cipherTextBytes = cipherTextBytesWithSaltAndIv.Skip((Keysize / 8) * 2).Take(cipherTextBytesWithSaltAndIv.Length - ((Keysize / 8) * 2)).ToArray();
-
-            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
-            {
-                var keyBytes = password.GetBytes(Keysize / 8);
-                using (var symmetricKey = new RijndaelManaged())
-                {
-                    symmetricKey.BlockSize = 256;
-                    symmetricKey.Mode = CipherMode.CBC;
-                    symmetricKey.Padding = PaddingMode.PKCS7;
-                    using (var decryptor = symmetricKey.CreateDecryptor(keyBytes, ivStringBytes))
-                    {
-                        using (var memoryStream = new MemoryStream(cipherTextBytes))
-                        {
-                            using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
-                            using (var streamReader = new StreamReader(cryptoStream, Encoding.UTF8))
-                            {
-                                return streamReader.ReadToEnd();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        private static byte[] Generate256BitsOfRandomEntropy()
-        {
-            var randomBytes = new byte[32]; // 32 Bytes will give us 256 bits.
-            using (var rngCsp = new RNGCryptoServiceProvider())
-            {
-                // Fill the array with cryptographically secure random bytes.
-                rngCsp.GetBytes(randomBytes);
-            }
-            return randomBytes;
-        }
-
-        public static string Encrypt(string plainText, string passPhrase)
-        {
-            // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
-            // so that the same Salt and IV values can be used when decrypting.  
-            var saltStringBytes = Generate256BitsOfRandomEntropy();
-            var ivStringBytes = Generate256BitsOfRandomEntropy();
-            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
-            {
-                var keyBytes = password.GetBytes(Keysize / 8);
-                using (var symmetricKey = new RijndaelManaged())
-                {
-                    symmetricKey.BlockSize = 256;
-                    symmetricKey.Mode = CipherMode.CBC;
-                    symmetricKey.Padding = PaddingMode.PKCS7;
-                    using (var encryptor = symmetricKey.CreateEncryptor(keyBytes, ivStringBytes))
-                    {
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
-                            {
-                                cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
-                                cryptoStream.FlushFinalBlock();
-                                // Create the final bytes as a concatenation of the random salt bytes, the random iv bytes and the cipher bytes.
-                                var cipherTextBytes = saltStringBytes;
-                                cipherTextBytes = cipherTextBytes.Concat(ivStringBytes).ToArray();
-                                cipherTextBytes = cipherTextBytes.Concat(memoryStream.ToArray()).ToArray();
-                                memoryStream.Close();
-                                cryptoStream.Close();
-                                return Convert.ToBase64String(cipherTextBytes);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        
     }
 }

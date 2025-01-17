@@ -54,8 +54,8 @@ namespace avEncDec_w1.UserControls.ManageUC
 
         private void btnMangeUser_Click(object sender, EventArgs e)
         {
-            UserRoleForm roleForm = new UserRoleForm(_profile);
-            roleForm.Show();
+            //UserRoleForm roleForm = new UserRoleForm(_profile);
+            //roleForm.Show();
         }
     }
 }

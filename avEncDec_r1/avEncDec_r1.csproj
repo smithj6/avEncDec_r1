@@ -74,6 +74,7 @@
     <Compile Include="Controllers\Log.cs" />
     <Compile Include="Controllers\User.cs" />
     <Compile Include="Controllers\UserFiles.cs" />
+    <Compile Include="EncDec.cs" />
     <Compile Include="KeyGenerator.cs" />
     <Compile Include="Model\FileHooker.cs" />
     <Compile Include="Model\Logs.cs" />

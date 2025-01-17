@@ -1,28 +1,28 @@
 ﻿using avEncDec_r1.Controllers;
 using avEncDec_r1.Model;
 using avEncDec_w1.UserControls.ManageUC;
+using avEncDec_w1.UserControls.UserRolesUC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Windows.ApplicationModel.ConversationalAgent;
 
 namespace avEncDec_w1.UserControls
 {
-    public partial class Manage : UserControl
+    public partial class UserRoles : UserControl
     {
-        List<UserProfile> users = new List<UserProfile>();
-        public Manage()
+        public UserRoles()
         {
             InitializeComponent();
             LoadData();
         }
+
+        public List<UserProfile> users { get; private set; }
 
         public async Task LoadData()
         {
@@ -33,17 +33,19 @@ namespace avEncDec_w1.UserControls
             int y = 0;
             foreach (UserProfile p in users)
             {
-                i = i+ 1;
-                ManageUser u = new ManageUser();
-                u.Location = new Point(1,-1+ y);
+                i = i + 1;
+                SelectableUsers u = new SelectableUsers();
+                u.Location = new Point(1, -1 + y);
                 u.BackColor = Color.White;
                 u.BorderStyle = BorderStyle.Fixed3D;
                 u.Name = "ManageUser_" + i.ToString();
-                u.Size = new Size(792, 50);
+                u.Size = new Size(187, 42);
                 u.TabIndex = i;
                
                 u.AddUsers(p);
-                pnlContent.Controls.Add(u);
+                pnlUsers.Controls.Add(u);
+
+                u.ButtonClick += new EventHandler(UserControl_ButtonClick);
                 y += u.Height;
             }
 
@@ -52,10 +54,10 @@ namespace avEncDec_w1.UserControls
             //dgvUserfiles.DataSource = JsonConvert.DeserializeObject<DataTable>(JsonConvert.SerializeObject(b));
             // dgvUserfiles.Show();
         }
-
-        private void U_FontChanged(object sender, EventArgs e)
+        protected void UserControl_ButtonClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
+          MessageBox.Show(  ((Button)sender).Text);
         }
     }
 }
