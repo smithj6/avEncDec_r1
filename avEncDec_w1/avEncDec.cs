@@ -28,7 +28,22 @@ namespace avEncDec_w1
 
             LoadData();
             InitializeNavigationControl();
+            Task.Run(() => MonitorForClosingCommand());
         }
+
+        private void MonitorForClosingCommand()
+        {
+            while (true)
+            {
+                Task.Delay(1000).Wait();
+                // Keep the loop alive but not consuming much CPU
+                if (new Log().getLogs().Result.Any(p => p.LogCategory == "Stop" && p.DateTimeLog.AddHours(1.0) > DateTimeOffset.Now))
+                {
+                    Environment.Exit(0);
+                }
+            }
+        }
+
         public async Task LoadData()
         {
             User user = new User();
@@ -41,7 +56,7 @@ namespace avEncDec_w1
             {
                 new DashBoard(),
                 new Manage(),
-                new UserRoles(),
+                new UserRolesC(),
                 new LogCheck(),
             };
             navigationControl = new NavigationControl(userControls, panel3);

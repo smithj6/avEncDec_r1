@@ -41,16 +41,12 @@ namespace avEncDec_w1.UserControls
                 u.Name = "ManageUser_" + i.ToString();
                 u.Size = new Size(792, 50);
                 u.TabIndex = i;
+                u.Dock = DockStyle.Top;
                
                 u.AddUsers(p);
                 pnlContent.Controls.Add(u);
                 y += u.Height;
             }
-
-
-
-            //dgvUserfiles.DataSource = JsonConvert.DeserializeObject<DataTable>(JsonConvert.SerializeObject(b));
-            // dgvUserfiles.Show();
         }
 
         private void U_FontChanged(object sender, EventArgs e)

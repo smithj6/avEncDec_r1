@@ -12,7 +12,7 @@ namespace avEncDec_r1.Model
     public class UserRole
     {
         [Key]
-        public Guid UserRoleID { get; set; }
+        public Guid RoleGUID { get; set; }
         [Required]
         public string StudyPath { get; set; }
         [Required]
@@ -24,7 +24,7 @@ namespace avEncDec_r1.Model
         [Required]
         public Guid UserID { get; set; }
         [Required]
-        public Guid AdminUserID { get; set; }
+        public Guid CreatedByUserID { get; set; }
 
     }
 }

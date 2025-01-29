@@ -52,7 +52,7 @@
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.lblHeader.Location = new System.Drawing.Point(298, 39);
+            this.lblHeader.Location = new System.Drawing.Point(0, 0);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(185, 32);
             this.lblHeader.TabIndex = 2;
@@ -71,14 +71,15 @@
             // 
             // btnDoLogs
             // 
+            this.btnDoLogs.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnDoLogs.FlatAppearance.BorderSize = 0;
             this.btnDoLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDoLogs.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDoLogs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
             this.btnDoLogs.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDoLogs.Location = new System.Drawing.Point(6, 49);
+            this.btnDoLogs.Location = new System.Drawing.Point(0, 405);
             this.btnDoLogs.Name = "btnDoLogs";
-            this.btnDoLogs.Size = new System.Drawing.Size(783, 42);
+            this.btnDoLogs.Size = new System.Drawing.Size(792, 42);
             this.btnDoLogs.TabIndex = 10;
             this.btnDoLogs.Text = "Start";
             this.btnDoLogs.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -88,9 +89,10 @@
             // lblPath
             // 
             this.lblPath.AutoSize = true;
+            this.lblPath.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.lblPath.Location = new System.Drawing.Point(3, 3);
+            this.lblPath.Location = new System.Drawing.Point(0, 0);
             this.lblPath.Name = "lblPath";
             this.lblPath.Size = new System.Drawing.Size(85, 16);
             this.lblPath.TabIndex = 3;

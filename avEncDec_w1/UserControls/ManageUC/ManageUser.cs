@@ -25,7 +25,7 @@ namespace avEncDec_w1.UserControls.ManageUC
         public void AddUsers(UserProfile profile)
         {
             lblUserName.Text = profile.UserName;
-            isActive.Checked = profile.isActive;
+            
             isAdmin.Checked = profile.IsAdmin;
             _profile = profile;
             _run = true;

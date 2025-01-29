@@ -1,4 +1,5 @@
-﻿using avEncDec_r1.Model;
+﻿using avEncDec_r1.Controllers;
+using avEncDec_r1.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,30 +9,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Windows.UI.Xaml.Documents;
 
 namespace avEncDec_w1.UserControls.UserRolesUC
 {
-    public partial class SelectableUsers : UserControl
+    public partial class PathRoles : UserControl
     {
-        public SelectableUsers()
+        public UserRole _userRole { get; set; }
+        public PathRoles()
         {
             InitializeComponent();
         }
-        public void AddUsers(UserProfile profile, int index)
+
+        public void AddRole(UserRole userrole, int index)
         {
-            btnUser.Text = profile.UserName;
-            btnUser.Name = "btnUsers_" + index;
+            lblPath.Text = userrole.StudyPath;
+            lblLead.Text = userrole.RoleOnStudy;
+            btnManage.Name = "btnManage_" + index;
+            _userRole = userrole;
         }
         [Browsable(true)]
         [Category("Action")]
         [Description("Invoked when user clicks button")]
         public event EventHandler ButtonClick;
-        private void btnUser_Click(object sender, EventArgs e)
+        private async void btnManage_Click(object sender, EventArgs e)
         {
+            
             //bubble the event up to the parent
             if (this.ButtonClick != null)
             {
+                UserRoles m = new UserRoles();
+                await m.RemoveUserRole(_userRole);
                 this.ButtonClick(sender, e);
             }
         }
