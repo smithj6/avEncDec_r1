@@ -44,7 +44,7 @@
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(792, 100);
+            this.pnlHeader.Size = new System.Drawing.Size(792, 40);
             this.pnlHeader.TabIndex = 1;
             // 
             // lblHeader
@@ -64,9 +64,9 @@
             this.pnlContent.Controls.Add(this.btnDoLogs);
             this.pnlContent.Controls.Add(this.lblPath);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 100);
+            this.pnlContent.Location = new System.Drawing.Point(0, 40);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(792, 447);
+            this.pnlContent.Size = new System.Drawing.Size(792, 507);
             this.pnlContent.TabIndex = 3;
             // 
             // btnDoLogs
@@ -77,7 +77,7 @@
             this.btnDoLogs.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDoLogs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
             this.btnDoLogs.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDoLogs.Location = new System.Drawing.Point(0, 405);
+            this.btnDoLogs.Location = new System.Drawing.Point(0, 465);
             this.btnDoLogs.Name = "btnDoLogs";
             this.btnDoLogs.Size = new System.Drawing.Size(792, 42);
             this.btnDoLogs.TabIndex = 10;

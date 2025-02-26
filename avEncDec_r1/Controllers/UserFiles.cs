@@ -23,7 +23,7 @@ namespace avEncDec_r1.Controllers
         {
             using (var ctx = new avEncDecContext())
             {
-                return await ctx.Files.FirstOrDefaultAsync(p => p.FileLocation == filelocation);
+                return await ctx.Files.OrderByDescending(a=>a.DateTimeModified).FirstOrDefaultAsync(p => p.FileLocation == filelocation);
             }
 
         }

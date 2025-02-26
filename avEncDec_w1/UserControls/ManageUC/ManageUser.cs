@@ -24,11 +24,12 @@ namespace avEncDec_w1.UserControls.ManageUC
         }
         public void AddUsers(UserProfile profile)
         {
-            lblUserName.Text = profile.UserName;
+        
+                lblUserName.Text = profile.UserName;
+                isAdmin.Checked = profile.IsAdmin;
+                _profile = profile;
+                _run = true;
             
-            isAdmin.Checked = profile.IsAdmin;
-            _profile = profile;
-            _run = true;
         }
 
         private void isActive_CheckedChanged(object sender, EventArgs e)
@@ -36,11 +37,11 @@ namespace avEncDec_w1.UserControls.ManageUC
 
         }
 
-        private void isAdmin_CheckedChanged(object sender, EventArgs e)
+        private async void isAdmin_CheckedChanged(object sender, EventArgs e)
         {
             if (!_run) return;
             User n = new User();
-            n.setUserAdmin(_profile.UserName,GlobalVars._User,isAdmin.Checked);
+            await n.setUserAdmin(_profile.UserName,GlobalVars._User,isAdmin.Checked);
             ToastForm toast = new ToastForm("Success","Admin grants updated");
             toast.Show();
           

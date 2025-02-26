@@ -69,7 +69,7 @@ namespace avEncDec_w1.UserControls
                         repPath += fbdPath.SelectedPath.Split('\\')[i] +"\\" ;
                     }
                     repPath += @"05_OutputDocs\04_Reports\";
-                    sasfile += "%avLogcheckFolder(logPath="+directorypath+ " ,repPath="+ repPath + " ,includeSetup=Y, includeSetupPath="+fbdPath.SelectedPath +");";
+                    sasfile += "%avLogcheckFolder(logPath="+directorypath+ " ,repPath="+ repPath + " , includeSetupPath="+fbdPath.SelectedPath +");";
                     Directory.CreateDirectory(directorypath + @"\busybox\");
                     File.WriteAllText(directorypath+@"\busybox\"+ FileName+".sas",sasfile);
 
@@ -85,7 +85,7 @@ namespace avEncDec_w1.UserControls
                     Process process = Process.Start(info);
                     process.WaitForExit();
 
-                     Directory.Delete(directorypath, true);
+                     //Directory.Delete(directorypath, true);
 
                     btnDoLogs.Enabled = true;
                     ToastForm toast = new ToastForm("Success", "Log Checks done");
@@ -97,21 +97,15 @@ namespace avEncDec_w1.UserControls
                 }
             }
         }
-
-
-
         private async Task<UserFile> GetUserFile(string filePath)
         {
             UserFiles _n = new UserFiles();
             return await _n.getUserFile(filePath);
         }
-
         private async Task<UserProfile> GetUserForFile(Guid userguid)
         {
             User _u = new User();
             return await _u.getSubUser(userguid);
         }
-
-
     }
 }

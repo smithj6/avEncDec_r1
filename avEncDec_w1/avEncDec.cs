@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 using avEncDec_r1.Controllers;
 using avEncDec_r1.Model;
 using avEncDec_w1.UserControls;
+using Windows.Networking.Proximity;
+using System.Threading;
 
 
 
@@ -24,14 +26,35 @@ namespace avEncDec_w1
         public avEncDec()
         {
             InitializeComponent();
+            Task.Run(() => LoadData());
+            Thread.Sleep(2500);
             ChangeNavClick((Button)btnDashboard);
 
-            LoadData();
+            
             InitializeNavigationControl();
             Task.Run(() => MonitorForClosingCommand());
+            
+
         }
 
-        private void MonitorForClosingCommand()
+        private async Task LoadUserInterface()
+        {
+
+            switch (GlobalVars._User.IsAdmin)
+            {
+                case false:
+                    btnManage.Invoke(new MethodInvoker(delegate { btnManage.Visible = true; }));
+                    //btnUserRoles.Invoke(new MethodInvoker(delegate { btnUserRoles.Visible = false; }));
+                   
+                    break;
+                case true:
+                    btnManage.Invoke(new MethodInvoker(delegate { btnManage.Visible = true; }));
+                    //btnUserRoles.Invoke(new MethodInvoker(delegate { btnUserRoles.Visible = true; }));
+                    break;
+                     }
+        }
+
+        private async void MonitorForClosingCommand()
         {
             while (true)
             {
@@ -48,7 +71,10 @@ namespace avEncDec_w1
         {
             User user = new User();
             GlobalVars._User = await user.checkUser();
-            label1.Text = GlobalVars._User.UserName;
+            label1.Invoke(new MethodInvoker(delegate { label1.Text = GlobalVars._User.UserName; })); 
+            
+           
+ 
         }
         private void InitializeNavigationControl()
         {
@@ -56,8 +82,7 @@ namespace avEncDec_w1
             {
                 new DashBoard(),
                 new Manage(),
-                new UserRolesC(),
-                new LogCheck(),
+                new FunStuff(),
             };
             navigationControl = new NavigationControl(userControls, panel3);
             navigationControl.Display(0);
@@ -66,9 +91,7 @@ namespace avEncDec_w1
         {
             ChangeNavClick((Button)sender);
             navigationControl.Display(0);
-
         }
-
         private void ChangeNavClick(Button sender)
         {
             foreach (var button in panel1.Controls.OfType<Button>())
@@ -81,9 +104,6 @@ namespace avEncDec_w1
             pnlNav.Left = sender.Left;
             sender.BackColor = Color.FromArgb(46, 51, 73);
         }
-
-
-
         private void btnManage_Click(object sender, EventArgs e)
         {
             ChangeNavClick((Button)sender);
@@ -118,7 +138,7 @@ namespace avEncDec_w1
         private void btnLogsCheck_Click(object sender, EventArgs e)
         {
             ChangeNavClick((Button)sender);
-            navigationControl.Display(3);
+            navigationControl.Display(2);
         }
     }
 }

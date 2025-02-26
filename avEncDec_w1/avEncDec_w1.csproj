@@ -70,10 +70,16 @@
     <Compile Include="UserControls\DashBoard.Designer.cs">
       <DependentUpon>DashBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\LogCheck.cs">
+    <Compile Include="UserControls\FunStuff.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\LogCheck.Designer.cs">
+    <Compile Include="UserControls\FunStuff.Designer.cs">
+      <DependentUpon>FunStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FunStuffUC\LogCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FunStuffUC\LogCheck.Designer.cs">
       <DependentUpon>LogCheck.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Manage.cs">
@@ -87,6 +93,12 @@
     </Compile>
     <Compile Include="UserControls\ManageUC\ManageUser.Designer.cs">
       <DependentUpon>ManageUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ManageUC\TransferPrograms.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ManageUC\TransferPrograms.Designer.cs">
+      <DependentUpon>TransferPrograms.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserRolesC.cs">
       <SubType>UserControl</SubType>
@@ -125,7 +137,10 @@
     <EmbeddedResource Include="UserControls\DashBoard.resx">
       <DependentUpon>DashBoard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\LogCheck.resx">
+    <EmbeddedResource Include="UserControls\FunStuff.resx">
+      <DependentUpon>FunStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FunStuffUC\LogCheck.resx">
       <DependentUpon>LogCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Manage.resx">
@@ -133,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ManageUC\ManageUser.resx">
       <DependentUpon>ManageUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ManageUC\TransferPrograms.resx">
+      <DependentUpon>TransferPrograms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UserRolesC.resx">
       <DependentUpon>UserRolesC.cs</DependentUpon>

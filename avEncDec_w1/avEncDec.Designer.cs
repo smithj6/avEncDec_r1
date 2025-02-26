@@ -28,22 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(avEncDec));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlNav = new System.Windows.Forms.Panel();
             this.btnLogsCheck = new System.Windows.Forms.Button();
-            this.btnTransfer = new System.Windows.Forms.Button();
-            this.btnBatchRun = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.btnUserRoles = new System.Windows.Forms.Button();
             this.btnManage = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,10 +49,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.panel1.Controls.Add(this.pnlNav);
             this.panel1.Controls.Add(this.btnLogsCheck);
-            this.panel1.Controls.Add(this.btnTransfer);
-            this.panel1.Controls.Add(this.btnBatchRun);
             this.panel1.Controls.Add(this.btnSettings);
-            this.panel1.Controls.Add(this.btnUserRoles);
             this.panel1.Controls.Add(this.btnManage);
             this.panel1.Controls.Add(this.btnDashboard);
             this.panel1.Controls.Add(this.panel2);
@@ -83,50 +75,14 @@
             this.btnLogsCheck.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogsCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
             this.btnLogsCheck.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLogsCheck.Location = new System.Drawing.Point(0, 324);
+            this.btnLogsCheck.Location = new System.Drawing.Point(0, 198);
             this.btnLogsCheck.Name = "btnLogsCheck";
             this.btnLogsCheck.Size = new System.Drawing.Size(186, 42);
             this.btnLogsCheck.TabIndex = 9;
-            this.btnLogsCheck.Text = "Log Checks";
+            this.btnLogsCheck.Text = "Functions";
             this.btnLogsCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLogsCheck.UseVisualStyleBackColor = true;
             this.btnLogsCheck.Click += new System.EventHandler(this.btnLogsCheck_Click);
-            // 
-            // btnTransfer
-            // 
-            this.btnTransfer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTransfer.Enabled = false;
-            this.btnTransfer.FlatAppearance.BorderSize = 0;
-            this.btnTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransfer.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransfer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
-            this.btnTransfer.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTransfer.Location = new System.Drawing.Point(0, 282);
-            this.btnTransfer.Name = "btnTransfer";
-            this.btnTransfer.Size = new System.Drawing.Size(186, 42);
-            this.btnTransfer.TabIndex = 8;
-            this.btnTransfer.Text = "Transfer";
-            this.btnTransfer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnTransfer.UseVisualStyleBackColor = true;
-            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
-            // 
-            // btnBatchRun
-            // 
-            this.btnBatchRun.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnBatchRun.Enabled = false;
-            this.btnBatchRun.FlatAppearance.BorderSize = 0;
-            this.btnBatchRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBatchRun.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchRun.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
-            this.btnBatchRun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBatchRun.Location = new System.Drawing.Point(0, 240);
-            this.btnBatchRun.Name = "btnBatchRun";
-            this.btnBatchRun.Size = new System.Drawing.Size(186, 42);
-            this.btnBatchRun.TabIndex = 7;
-            this.btnBatchRun.Text = "Batch Run";
-            this.btnBatchRun.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnBatchRun.UseVisualStyleBackColor = true;
-            this.btnBatchRun.Click += new System.EventHandler(this.btnBatchRun_Click);
             // 
             // btnSettings
             // 
@@ -145,23 +101,6 @@
             this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // btnUserRoles
-            // 
-            this.btnUserRoles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUserRoles.FlatAppearance.BorderSize = 0;
-            this.btnUserRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUserRoles.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUserRoles.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
-            this.btnUserRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUserRoles.Location = new System.Drawing.Point(0, 198);
-            this.btnUserRoles.Name = "btnUserRoles";
-            this.btnUserRoles.Size = new System.Drawing.Size(186, 42);
-            this.btnUserRoles.TabIndex = 4;
-            this.btnUserRoles.Text = "User Roles";
-            this.btnUserRoles.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnUserRoles.UseVisualStyleBackColor = true;
-            this.btnUserRoles.Click += new System.EventHandler(this.btnLogs_Click);
             // 
             // btnManage
             // 
@@ -236,11 +175,6 @@
             this.panel3.Size = new System.Drawing.Size(765, 577);
             this.panel3.TabIndex = 2;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // avEncDec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -270,14 +204,10 @@
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Button btnUserRoles;
         private System.Windows.Forms.Button btnManage;
         private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnTransfer;
-        private System.Windows.Forms.Button btnBatchRun;
         private System.Windows.Forms.Button btnLogsCheck;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 
