@@ -1,4 +1,5 @@
-﻿using avEncDec_w1.UserControls.ManageUC;
+﻿using avEncDec_w1.UserControls.FunStuffUC;
+using avEncDec_w1.UserControls.ManageUC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,21 +32,23 @@ namespace avEncDec_w1.UserControls
             u.Dock = DockStyle.Fill;
             pnlContent.Controls.Add(u);
         }
-
         private void btnLogCheck_Click(object sender, EventArgs e)
         {
+         LoadData();
+        }
+
+        private void btnBatchRun_Click(object sender, EventArgs e)
+        {
             pnlContent.Controls.Clear();
-            LogCheck u = new LogCheck();
+            BatchRun u = new BatchRun();
 
             u.BackColor = Color.Transparent;
             u.BorderStyle = BorderStyle.Fixed3D;
-            u.Name = "LogCheck";
+            u.Name = "BatchRun";
             u.Size = new Size(792, 50);
 
             u.Dock = DockStyle.Fill;
             pnlContent.Controls.Add(u);
         }
-
-
     }
 }

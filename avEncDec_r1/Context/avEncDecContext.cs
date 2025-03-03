@@ -16,5 +16,7 @@ namespace avEncDec_r1.Context
         public DbSet<UserFile> Files { get; set; }
         public DbSet<Logs> Logs { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+
+        public DbSet<Batch_Helper> Batch_Helper { get; set; }   
     }
 }

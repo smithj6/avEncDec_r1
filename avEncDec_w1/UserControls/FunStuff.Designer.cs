@@ -85,6 +85,7 @@
             this.btnBatchRun.Text = "Batch Run";
             this.btnBatchRun.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnBatchRun.UseVisualStyleBackColor = true;
+            this.btnBatchRun.Click += new System.EventHandler(this.btnBatchRun_Click);
             // 
             // btnLogCheck
             // 
@@ -111,7 +112,6 @@
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(792, 381);
             this.pnlContent.TabIndex = 5;
-          
             // 
             // FunStuff
             // 

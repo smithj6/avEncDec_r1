@@ -14,6 +14,8 @@ using avEncDec_r1.Controllers;
 using System.Security.Cryptography;
 using Windows.Security.Cryptography.Certificates;
 using Windows.UI.Xaml.Media.Animation;
+using CsvHelper;
+using System.Globalization;
 
 namespace avEncDec_r1
 {
@@ -28,6 +30,7 @@ namespace avEncDec_r1
         [DllImport("User32.dll", CallingConvention = CallingConvention.StdCall, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool ShowWindow([In] IntPtr hWnd, [In] int nCmdShow);
+
 
         static async Task Main(string[] args)
         {

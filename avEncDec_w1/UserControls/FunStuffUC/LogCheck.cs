@@ -85,7 +85,7 @@ namespace avEncDec_w1.UserControls
                     Process process = Process.Start(info);
                     process.WaitForExit();
 
-                     //Directory.Delete(directorypath, true);
+                     Directory.Delete(directorypath, true);
 
                     btnDoLogs.Enabled = true;
                     ToastForm toast = new ToastForm("Success", "Log Checks done");
