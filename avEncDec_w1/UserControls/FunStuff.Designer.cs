@@ -34,6 +34,8 @@
             this.btnBatchRun = new System.Windows.Forms.Button();
             this.btnLogCheck = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.btnTransfer = new System.Windows.Forms.Button();
+            this.btnTransferSOP = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +64,8 @@
             // pnlButtons
             // 
             this.pnlButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pnlButtons.Controls.Add(this.btnTransferSOP);
+            this.pnlButtons.Controls.Add(this.btnTransfer);
             this.pnlButtons.Controls.Add(this.btnBatchRun);
             this.pnlButtons.Controls.Add(this.btnLogCheck);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Top;
@@ -113,6 +117,40 @@
             this.pnlContent.Size = new System.Drawing.Size(792, 381);
             this.pnlContent.TabIndex = 5;
             // 
+            // btnTransfer
+            // 
+            this.btnTransfer.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnTransfer.FlatAppearance.BorderSize = 0;
+            this.btnTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTransfer.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransfer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
+            this.btnTransfer.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTransfer.Location = new System.Drawing.Point(372, 0);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(186, 42);
+            this.btnTransfer.TabIndex = 9;
+            this.btnTransfer.Text = "Transfer M5";
+            this.btnTransfer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnTransfer.UseVisualStyleBackColor = true;
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
+            // 
+            // btnTransferSOP
+            // 
+            this.btnTransferSOP.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnTransferSOP.FlatAppearance.BorderSize = 0;
+            this.btnTransferSOP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTransferSOP.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransferSOP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
+            this.btnTransferSOP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTransferSOP.Location = new System.Drawing.Point(558, 0);
+            this.btnTransferSOP.Name = "btnTransferSOP";
+            this.btnTransferSOP.Size = new System.Drawing.Size(186, 42);
+            this.btnTransferSOP.TabIndex = 10;
+            this.btnTransferSOP.Text = "Transfer SOP";
+            this.btnTransferSOP.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnTransferSOP.UseVisualStyleBackColor = true;
+            this.btnTransferSOP.Click += new System.EventHandler(this.btnTransferSOP_Click);
+            // 
             // FunStuff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,5 +177,7 @@
         private System.Windows.Forms.Button btnBatchRun;
         private System.Windows.Forms.Button btnLogCheck;
         private System.Windows.Forms.Panel pnlContent;
+        private System.Windows.Forms.Button btnTransfer;
+        private System.Windows.Forms.Button btnTransferSOP;
     }
 }

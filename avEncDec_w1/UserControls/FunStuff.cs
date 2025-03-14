@@ -50,5 +50,33 @@ namespace avEncDec_w1.UserControls
             u.Dock = DockStyle.Fill;
             pnlContent.Controls.Add(u);
         }
+
+        private void btnTransfer_Click(object sender, EventArgs e)
+        {
+            pnlContent.Controls.Clear();
+            ExportM5 u = new ExportM5();
+
+            u.BackColor = Color.Transparent;
+            u.BorderStyle = BorderStyle.Fixed3D;
+            u.Name = "ExportM5";
+            u.Size = new Size(792, 50);
+
+            u.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(u);
+        }
+
+        private void btnTransferSOP_Click(object sender, EventArgs e)
+        {
+            pnlContent.Controls.Clear();
+            TransferSOP u = new TransferSOP();
+
+            u.BackColor = Color.Transparent;
+            u.BorderStyle = BorderStyle.Fixed3D;
+            u.Name = "TransferSOP";
+            u.Size = new Size(792, 50);
+
+            u.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(u);
+        }
     }
 }

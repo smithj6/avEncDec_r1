@@ -120,7 +120,7 @@ namespace avEncDec_w1.UserControls.FunStuffUC
 
             }
         }
-        static void GetAllFiles(string path)
+        public void GetAllFiles(string path)
         {
             try
             {

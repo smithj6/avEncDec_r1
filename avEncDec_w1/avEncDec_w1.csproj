@@ -88,6 +88,18 @@
     <Compile Include="UserControls\FunStuffUC\LogCheck.Designer.cs">
       <DependentUpon>LogCheck.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FunStuffUC\ExportM5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FunStuffUC\ExportM5.Designer.cs">
+      <DependentUpon>ExportM5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FunStuffUC\TransferSOP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FunStuffUC\TransferSOP.Designer.cs">
+      <DependentUpon>TransferSOP.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Manage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FunStuffUC\LogCheck.resx">
       <DependentUpon>LogCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FunStuffUC\ExportM5.resx">
+      <DependentUpon>ExportM5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FunStuffUC\TransferSOP.resx">
+      <DependentUpon>TransferSOP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Manage.resx">
       <DependentUpon>Manage.cs</DependentUpon>
