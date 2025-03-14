@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnExports = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -47,6 +48,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.panel1.Controls.Add(this.btnExports);
             this.panel1.Controls.Add(this.pnlNav);
             this.panel1.Controls.Add(this.btnLogsCheck);
             this.panel1.Controls.Add(this.btnSettings);
@@ -175,6 +177,23 @@
             this.panel3.Size = new System.Drawing.Size(765, 577);
             this.panel3.TabIndex = 2;
             // 
+            // btnExports
+            // 
+            this.btnExports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnExports.FlatAppearance.BorderSize = 0;
+            this.btnExports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExports.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(200)))));
+            this.btnExports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExports.Location = new System.Drawing.Point(0, 240);
+            this.btnExports.Name = "btnExports";
+            this.btnExports.Size = new System.Drawing.Size(186, 42);
+            this.btnExports.TabIndex = 10;
+            this.btnExports.Text = "Export Logs";
+            this.btnExports.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnExports.UseVisualStyleBackColor = true;
+            this.btnExports.Click += new System.EventHandler(this.btnExports_Click);
+            // 
             // avEncDec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -208,6 +227,7 @@
         private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnLogsCheck;
+        private System.Windows.Forms.Button btnExports;
     }
 }
 

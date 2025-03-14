@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -43,10 +44,13 @@ namespace avEncDec_w1.UserControls.FunStuffUC
             List<Task> tasks = new List<Task>();
             if (result == DialogResult.OK)
             {
+                lblPath.Invoke(new MethodInvoker(delegate { lblPath.Text = ofd.SelectedPath; }));
                 runables = await new Batch_Helpers().getbatch_Helpers();
                 directorypath += Guid.NewGuid().ToString().Split('-')[0];
                 Directory.CreateDirectory(directorypath);
+                lblPath.Invoke(new MethodInvoker(delegate { lblPath.Text ="Finding all .sas files"; }));
                 GetAllFiles(ofd.SelectedPath);
+                lblPath.Invoke(new MethodInvoker(delegate { lblPath.Text = Selectables.Count.ToString() + " has been found"; }));
                 for (int i = 0; i < Selectables.Count; i++)
                 {
                     //tasks.Add(Task.Factory.StartNew(async () =>
@@ -95,9 +99,24 @@ namespace avEncDec_w1.UserControls.FunStuffUC
                             process.WaitForExit();
                         }));
                     }
+                    lblPath.Invoke(new MethodInvoker(delegate { lblPath.Text = "Running group " + i.ToString(); }));
                     Task.WaitAll(tasks.ToArray());
+                   
                 }
 
+                Directory.Delete(directorypath, true);
+                lblPath.Invoke(new MethodInvoker(delegate { lblPath.Text = Selectables.Count.ToString() + " Completed"; }));
+
+                await new Log().addLog(new Logs
+                {
+                    DateTimeLog = DateTimeOffset.Now,
+                    Exception = GlobalVars._User.UserName + " (UserID:" + GlobalVars._User.UserID + ") done a batch run on: " + ofd.SelectedPath,
+                    LogCategory = "Info",
+                    LogID = Guid.NewGuid(),
+                    UserID = GlobalVars._User.UserID,
+                    LogPath = "",
+                    msElapsed = -1
+                });
 
             }
         }

@@ -16,6 +16,7 @@ using Windows.Security.Cryptography.Certificates;
 using Windows.UI.Xaml.Media.Animation;
 using CsvHelper;
 using System.Globalization;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace avEncDec_r1
 {
@@ -34,40 +35,118 @@ namespace avEncDec_r1
 
         static async Task Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                return;
+            }
             IntPtr handle = Process.GetCurrentProcess().MainWindowHandle;
             ShowWindow(handle, 6);
             user = await new User().checkUser();
-            await ShowNotification("Welcome " + user.UserName);
-            
-            Random rnd = new Random();
-            convesationID = rnd.Next(1, 100000);
-          
-            CheckIfDirExistAndCreatesIt();
-
-            //args = new []{ @"T:\SAB Biotherapeutics Inc\SAB-142-101\11 Stats\03 Analysis\Draft 2\08_Final Programs\02_CDISC\Production\01_SDTM\ae.sas"};
-
             if (args.Length == 1)
             {
-                FileInfo n = new FileInfo(args[0]);
-                if (n.FullName.Contains("02_CDISC") || n.FullName.Contains("03_TFL"))
+                Random rnd = new Random();
+                convesationID = rnd.Next(1, 100000);
+
+                CheckIfDirExistAndCreatesIt();
+
+                //args = new []{ @"T:\SAB Biotherapeutics Inc\SAB-142-101\11 Stats\03 Analysis\Draft 2\08_Final Programs\02_CDISC\Production\01_SDTM\ae.sas"};
+
+                if (args.Length == 1)
                 {
-                    string tempFilePath = await CopyFileToTempAsync(n, tempFolder);
-                    await StartSASProcess(tempFilePath);
-                    //Do all of the DB checks
-                    maintainDB(n.FullName, tempFilePath);
-                    //Check if instance is all ready running then stop it
-                    if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) System.Diagnostics.Process.GetCurrentProcess().Kill();
-                    await Task.Run(() => MonitorFileAsync());
-                    Console.ReadLine();
+                    FileInfo n = new FileInfo(args[0]);
+                    if (n.FullName.Contains("02_CDISC") || n.FullName.Contains("03_TFL"))
+                    {
+                        string tempFilePath = await CopyFileToTempAsync(n, tempFolder);
+                        await StartSASProcess(tempFilePath);
+                        //Do all of the DB checks
+                        maintainDB(n.FullName, tempFilePath);
+                        //Check if instance is all ready running then stop it
+                        if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) System.Diagnostics.Process.GetCurrentProcess().Kill();
+                        await Task.Run(() => MonitorFileAsync());
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        await StartSASProcess(n.FullName);
+                    }
                 }
                 else
                 {
-                    await StartSASProcess(n.FullName);
+                    await ShowNotification("No file has been found");
                 }
             }
             else
             {
-                 await ShowNotification("No file has been found");
+
+                if (args[0] == "trans")
+                {
+                    string locFile      = args[1];
+                    string destination  = args[2];
+                    string DecEnc       = args[3];
+                    FileInfo n = new FileInfo(args[0]);
+                    if (n.FullName.Contains("02_CDISC") || n.FullName.Contains("03_TFL"))
+                    {
+                        var b = await new UserFiles().getUserFile(locFile);
+                        if (b != null)
+                        {
+                            UserFile q = new UserFile()
+                            {
+                                DateTimeModified = DateTimeOffset.Now,
+                                FileContents = b.FileContents,
+                                FileID = Guid.NewGuid(),
+                                FileLocation = destination,
+                                UserID = b.UserID
+                            };
+
+                            await new UserFiles().addFile(q);
+                            if (DecEnc == "Enc")
+                            {
+                                File.Copy(locFile, destination, true);
+                                await new Log().addLog(new Logs
+                                {
+                                    DateTimeLog = DateTimeOffset.Now,
+                                    Exception = user.UserName + " (UserID:" + user.UserID + ") did a encrypted transfer from: " + locFile + " to: " + destination,
+                                    LogCategory = "Info",
+                                    LogID = Guid.NewGuid(),
+                                    UserID = user.UserID,
+                                    LogPath = "",
+                                    msElapsed = -1
+                                });
+                            }
+                            if (DecEnc == "Dec")
+                            {
+                                var c = await new User().getSubUser(b.UserID);
+                                File.WriteAllText(destination, EncDec.Decrypt(File.ReadAllText(locFile), c.PKey));
+                                await new Log().addLog(new Logs
+                                {
+                                    DateTimeLog = DateTimeOffset.Now,
+                                    Exception = user.UserName + " (UserID:" + user.UserID + ") did a decrypted transfer from: " + locFile + " to: " + destination,
+                                    LogCategory = "Warning",
+                                    LogID = Guid.NewGuid(),
+                                    UserID = user.UserID,
+                                    LogPath = "",
+                                    msElapsed = -1
+                                });
+
+                            }
+                        }
+                        else
+                        {
+                            File.Copy(locFile, destination, true);
+
+                            await new Log().addLog(new Logs
+                            {
+                                DateTimeLog = DateTimeOffset.Now,
+                                Exception = user.UserName + " (UserID:" + user.UserID + ") did a file copy transfer from: " + locFile + " to: " + destination,
+                                LogCategory = "Info",
+                                LogID = Guid.NewGuid(),
+                                UserID = user.UserID,
+                                LogPath = "",
+                                msElapsed = -1
+                            });
+                        }
+                    }
+                }
             }
         }
 
@@ -199,6 +278,7 @@ namespace avEncDec_r1
         {
             try
             {
+               
                 Process process = new Process();
                 process.StartInfo.FileName = @"""C:\Program Files\SASHome\SASFoundation\9.4\core\sasexe\sasoact.exe"""; // Assumes 'sas' is in PATH or give the full path to SAS
                 process.StartInfo.Arguments = @"action=Open datatype=SASFile filename=""" + filePath + @""" config=""C:\Program Files\SASHome\SASFoundation\9.4\nls\u8\sasv9.cfg"" progid=SAS.Application.940";

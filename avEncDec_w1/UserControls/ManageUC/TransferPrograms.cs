@@ -122,6 +122,17 @@ namespace avEncDec_w1.UserControls.ManageUC
                         q.DateTimeModified = DateTimeOffset.Now;
                         File.WriteAllText(s, EncDec.Encrypt(sContents, SelectedProfile.PKey));
                         await new UserFiles().addFile(q);
+
+                        await new Log().addLog(new Logs
+                        {
+                            DateTimeLog = DateTimeOffset.Now,
+                            Exception = GlobalVars._User.UserName + " (UserID:" + GlobalVars._User.UserID + ") reassigned + " + SelectedProfile.UserName + " (UserID:" + SelectedProfile.UserID + ") to file: " + fileInfo.FullName,
+                            LogCategory = "Info",
+                            LogID = Guid.NewGuid(),
+                            UserID = GlobalVars._User.UserID,
+                            LogPath = "",
+                            msElapsed = -1
+                        });
                     }
                     catch (Exception ex)
                     {
@@ -132,7 +143,7 @@ namespace avEncDec_w1.UserControls.ManageUC
 
             }
             Task.WaitAll(tasks.ToArray());
-            ToastForm toast = new ToastForm("Success", "Admin grants updated");
+            ToastForm toast = new ToastForm("Success", "File(s) encryption changed" );
             toast.Show();
 
         }

@@ -43,7 +43,7 @@ namespace avEncDec_w1.UserControls
                         FileInfo _log = new FileInfo(i);
                         string _tmpFileName = Guid.NewGuid().ToString().Split('-')[0] + ".log";
                      
-                            var b = await GetUserFile(i);
+                        var b = await GetUserFile(i);
                         if (b != null)
                         {
                             var c = await GetUserForFile(b.UserID);
@@ -88,6 +88,16 @@ namespace avEncDec_w1.UserControls
                      Directory.Delete(directorypath, true);
 
                     btnDoLogs.Enabled = true;
+                    await new Log().addLog(new Logs
+                    {
+                        DateTimeLog = DateTimeOffset.Now,
+                        Exception = GlobalVars._User.UserName + " (UserID:" + GlobalVars._User.UserID + ") done a log check on: " + fbdPath.SelectedPath,
+                        LogCategory = "Info",
+                        LogID = Guid.NewGuid(),
+                        UserID = GlobalVars._User.UserID,
+                        LogPath = "",
+                        msElapsed = -1
+                    });
                     ToastForm toast = new ToastForm("Success", "Log Checks done");
                     toast.Show();
                 }

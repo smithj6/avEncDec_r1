@@ -24,7 +24,7 @@ namespace avEncDec_r1.Controllers
         {
             using (var ctx = new avEncDecContext())
             {
-                return await ctx.Logs.OrderByDescending(p => p.DateTimeLog).ToListAsync();
+                return await ctx.Logs.Where(p=>p.LogCategory != "Stop").OrderByDescending(p => p.DateTimeLog).ToListAsync();
             }
         }
     }

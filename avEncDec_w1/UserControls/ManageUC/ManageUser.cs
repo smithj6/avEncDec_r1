@@ -44,6 +44,17 @@ namespace avEncDec_w1.UserControls.ManageUC
             await n.setUserAdmin(_profile.UserName,GlobalVars._User,isAdmin.Checked);
             ToastForm toast = new ToastForm("Success","Admin grants updated");
             toast.Show();
+
+            await new Log().addLog(new Logs
+            {
+                DateTimeLog = DateTimeOffset.Now,
+                Exception = GlobalVars._User.UserName + " (UserID:" + GlobalVars._User.UserID + ") updated + " + _profile.UserName + " (UserID:" + _profile.UserID + ") admin rights " + isAdmin.Checked,
+                LogCategory = "Info",
+                LogID = Guid.NewGuid(),
+                UserID = GlobalVars._User.UserID,
+                LogPath = "",
+                msElapsed = -1
+            });
           
         }
 

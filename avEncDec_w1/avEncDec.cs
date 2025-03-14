@@ -13,6 +13,13 @@ using avEncDec_r1.Model;
 using avEncDec_w1.UserControls;
 using Windows.Networking.Proximity;
 using System.Threading;
+using CsvHelper;
+using System.Globalization;
+using System.IO;
+using System.Collections;
+using avEncDec_w1.Toasts;
+using System.Diagnostics;
+using System.Runtime.InteropServices.ComTypes;
 
 
 
@@ -139,6 +146,48 @@ namespace avEncDec_w1
         {
             ChangeNavClick((Button)sender);
             navigationControl.Display(2);
+        }
+
+        public class csvExprt
+        {
+            public DateTime DateTimeOffset { get; set; }
+            public string UserName { get; set; }
+            public string LogCategory { get; set; }
+            public string Description { get; set; }
+        }
+        private async void btnExports_Click(object sender, EventArgs e)
+        {
+            List<csvExprt> list = new List<csvExprt>();
+            foreach (var i in await new Log().getLogs())
+            {
+                var resUser = await new User().getSubUser(i.UserID);
+                list.Add(new csvExprt() { 
+                    DateTimeOffset = i.DateTimeLog.DateTime,
+                    Description = i.Exception + Environment.NewLine + i.LogPath,
+                    LogCategory = i.LogCategory,
+                    UserName = resUser.UserName
+                });
+            }
+            string filename = @"C:\sas_temp\" + Guid.NewGuid().ToString().Split('-')[0] + ".csv";
+            using (var writer = new StreamWriter(filename))
+            {
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csv.WriteHeader<csvExprt>();
+                    csv.NextRecord();
+
+                    foreach (var record in list)
+                    {
+                        csv.WriteRecord(record);
+                        csv.NextRecord();
+                    }
+                }
+            }
+            ToastForm toast = new ToastForm("Success", "Exported the logs");
+            toast.Show();
+
+            Process.Start("notepad.exe", filename);
+
         }
     }
 }
